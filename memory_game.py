@@ -1,6 +1,7 @@
 import random
 import vlc
 import winsound
+import glob
 
 import sys
 from PyQt5.QtCore import Qt, QSize, QTimer, QEventLoop
@@ -8,7 +9,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap, QIcon, QImage, QFont
 
 ##########
-tate = 5
+tate = 4
 yoko = 2
 ##########
 
@@ -26,6 +27,8 @@ plyaer_none.set_media_list(mediaList0)
 player_ok.set_media_list(mediaList1)
 player_finish.set_media_list(mediaList2)
 
+img_path_list = glob.glob('./pic/*.jpg')
+
 class Window(QWidget):
 
     def __init__(self):
@@ -40,7 +43,7 @@ class Window(QWidget):
 
     def initUI(self):
 
-        self.img = [QImage('./pic/%d.jpg'%i) for i in range(13)]
+        self.img = [QImage(x) for x in img_path_list]
 
         ### main ###
         main = QFrame()
@@ -106,7 +109,7 @@ class Window(QWidget):
         self.first_select = -1
         self.second_select = -1
         
-        self.image_id = random.sample(range(1, 13), int(total_card/2)) * 2
+        self.image_id = random.sample(range(1, len(img_path_list)), int(total_card/2)) * 2
         random.shuffle(self.image_id)
 
         for i in range(total_card):

@@ -10,7 +10,7 @@ from PyQt5.QtGui import QPixmap, QIcon, QImage, QFont
 
 ##########
 tate = 4
-yoko = 2
+yoko = 6
 ##########
 
 total_card = tate * yoko
@@ -58,7 +58,7 @@ class Window(QWidget):
             self.card_label[i].setFlat(True)
             self.card_label[i].setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
             self.card_label[i].clicked.connect(self.buttonClicked)  
-            card_layout.addWidget(self.card_label[i], i // tate, i % tate)
+            card_layout.addWidget(self.card_label[i], i // yoko, i % yoko)
         main.setLayout(card_layout)
         ### main ###
         

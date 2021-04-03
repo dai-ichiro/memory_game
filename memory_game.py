@@ -4,13 +4,13 @@ import winsound
 import glob
 
 import sys
-from PyQt5.QtCore import Qt, QSize, QTimer, QEventLoop
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QPixmap, QIcon, QImage, QFont
+from PyQt6.QtCore import Qt, QSize, QTimer, QEventLoop
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import QPixmap, QIcon, QImage, QFont
 
 ##########
-tate = 4
-yoko = 2
+yoko = 4
+tate = 6
 ##########
 
 total_card = tate * yoko
@@ -47,7 +47,7 @@ class Window(QWidget):
 
         ### main ###
         main = QFrame()
-        main.setFrameStyle(QFrame.Box | QFrame.Plain)
+        main.setFrameStyle(QFrame.Shape.Box.value | QFrame.Shadow.Plain.value)
         
         card_layout = QGridLayout()
         
@@ -56,7 +56,8 @@ class Window(QWidget):
         for i in range(total_card):
             self.card_label[i].setObjectName(str(i))
             self.card_label[i].setFlat(True)
-            self.card_label[i].setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+            
+            self.card_label[i].setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
             self.card_label[i].clicked.connect(self.buttonClicked)  
             card_layout.addWidget(self.card_label[i], i // tate, i % tate)
         main.setLayout(card_layout)
@@ -67,15 +68,19 @@ class Window(QWidget):
 
         button_layout = QHBoxLayout()
 
+        font = QFont()
+        font.setFamily('Times')
+        font.setPointSize(24)
+        font.setBold(True)
         self.start_button = QPushButton('start')
-        self.start_button.setFont(QFont("Times", 24, QFont.Bold))
+        self.start_button.setFont(font)
         self.start_button.clicked.connect(self.game_start)
-        self.start_button.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.start_button.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
         
         self.exit_button = QPushButton('exit')
-        self.exit_button.setFont(QFont("Times", 24, QFont.Bold))
+        self.exit_button.setFont(font)
         self.exit_button.clicked.connect(self.exit)
-        self.exit_button.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.exit_button.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
 
         button_layout.addWidget(QLabel())
         button_layout.addWidget(self.start_button)
@@ -155,7 +160,7 @@ class Window(QWidget):
             ### wait for 800msec ###
             loop = QEventLoop()
             QTimer.singleShot(800, loop.quit)
-            loop.exec_()
+            loop.exec()
 
             self.button_enable[self.first_select] = True
             self.button_enable[self.second_select] = True
@@ -173,7 +178,7 @@ class Window(QWidget):
     def set_image_into_button(self, image, button):
         w = button.width()
         h = button.height()
-        img = QPixmap.fromImage(image.scaled(w-10, h-10, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        img = QPixmap.fromImage(image.scaled(w-10, h-10, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         button.setIcon(QIcon(img))
         button.setIconSize(QSize(img.size()))
 
@@ -181,4 +186,4 @@ app = QApplication(sys.argv)
 ex =Window()
 
 ex.showFullScreen()
-sys.exit(app.exec_())
+sys.exit(app.exec())

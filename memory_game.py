@@ -46,9 +46,6 @@ class Window(QWidget):
         self.img = [QImage(x) for x in img_path_list]
 
         ### main ###
-        main = QFrame()
-        main.setFrameStyle(QFrame.Shape.Box.value | QFrame.Shadow.Plain.value)
-        
         card_layout = QGridLayout()
         
         self.card_label =[QPushButton() for i in range(total_card)]
@@ -60,12 +57,9 @@ class Window(QWidget):
             self.card_label[i].setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
             self.card_label[i].clicked.connect(self.buttonClicked)  
             card_layout.addWidget(self.card_label[i], i // yoko, i % yoko)
-        main.setLayout(card_layout)
         ### main ###
         
         ### footer ###
-        footer = QFrame()
-
         button_layout = QHBoxLayout()
 
         font = QFont()
@@ -86,13 +80,11 @@ class Window(QWidget):
         button_layout.addWidget(self.start_button)
         button_layout.addWidget(self.exit_button)
         button_layout.addWidget(QLabel())
-
-        footer.setLayout(button_layout)
         ### footer ###
 
         vbox = QVBoxLayout()
-        vbox.addWidget(main, 6)
-        vbox.addWidget(footer, 1)
+        vbox.addLayout(card_layout, 6)
+        vbox.addLayout(button_layout, 1)
 
         self.setLayout(vbox)
 

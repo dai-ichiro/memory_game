@@ -1,0 +1,37 @@
+button_1:
+  type: QPushButton
+  fontFamily: Times
+  fontPoint: 24
+  fontBold: True
+
+#label:
+#  type: QLabel
+#  width: 300
+#  height: 100
+#  alignment: center
+#  fontFamily: times
+#  fontPoint: 40
+#  fontBold: True
+#  linewidth: 5
+#  shape: box #(box or panel)
+#  shadow: raised #(plain, raised or sunken)
+#  text: start
+
+#button:
+#  type: QPushButton
+#  width: 200
+#  height: 100
+#  fontFamily: times
+#  fontPoint: 40
+#  fontBold: False
+#  text: start
+
+#slider:
+#  type: QSlider
+#  width: 200
+#  height: 100
+#  orientation: h  #(h or v)
+#  max: 100
+#  min: 0
+#  default: 50
+#  tickposition: above  #(above, below, left, right or both)  

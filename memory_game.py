@@ -8,6 +8,8 @@ from PyQt6.QtCore import Qt, QSize, QTimer, QEventLoop
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QPixmap, QIcon, QImage, QFont
 
+from constructGUI import construct
+
 ##########
 yoko = 6
 tate = 4
@@ -52,8 +54,7 @@ class Window(QWidget):
         
         for i in range(total_card):
             self.card_label[i].setObjectName(str(i))
-            self.card_label[i].setFlat(True)
-            
+            self.card_label[i].setFlat(True)   
             self.card_label[i].setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
             self.card_label[i].clicked.connect(self.buttonClicked)  
             card_layout.addWidget(self.card_label[i], i // yoko, i % yoko)
@@ -62,17 +63,11 @@ class Window(QWidget):
         ### footer ###
         button_layout = QHBoxLayout()
 
-        font = QFont()
-        font.setFamily('Times')
-        font.setPointSize(24)
-        font.setBold(True)
-        self.start_button = QPushButton('start')
-        self.start_button.setFont(font)
+        self.start_button = construct(QPushButton('start'), 'settings.yaml', 'button_1')
         self.start_button.clicked.connect(self.game_start)
         self.start_button.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
         
-        self.exit_button = QPushButton('exit')
-        self.exit_button.setFont(font)
+        self.exit_button = construct(QPushButton('exit'), 'settings.yaml', 'button_1')
         self.exit_button.clicked.connect(self.exit)
         self.exit_button.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
 
@@ -83,7 +78,7 @@ class Window(QWidget):
         ### footer ###
 
         vbox = QVBoxLayout()
-        vbox.addLayout(card_layout, 6)
+        vbox.addLayout(card_layout, 8)
         vbox.addLayout(button_layout, 1)
 
         self.setLayout(vbox)

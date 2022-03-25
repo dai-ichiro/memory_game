@@ -44,7 +44,7 @@ class Window(QWidget):
 
     def initUI(self):
 
-        self.img = [QImage(x) for x in img_path_list]
+        self.img = [QPixmap(x) for x in img_path_list]
 
         ### main ###
         card_layout = QGridLayout()
@@ -164,7 +164,7 @@ class Window(QWidget):
     def set_image_into_button(self, image, button):
         w = button.width()
         h = button.height()
-        img = QPixmap.fromImage(image.scaled(w-10, h-10, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+        img = image.scaled(w-10, h-10, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
         button.setIcon(QIcon(img))
         button.setIconSize(QSize(img.size()))
 

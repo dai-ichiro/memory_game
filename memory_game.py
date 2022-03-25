@@ -6,13 +6,13 @@ import glob
 import sys
 from PyQt6.QtCore import Qt, QSize, QTimer, QEventLoop
 from PyQt6.QtWidgets import *
-from PyQt6.QtGui import QPixmap, QIcon, QImage, QFont
+from PyQt6.QtGui import QPixmap, QIcon, QImage
 
 from constructGUI import construct
 
 ##########
-yoko = 6
-tate = 4
+yoko = 4
+tate = 2
 ##########
 
 total_card = tate * yoko

@@ -5,7 +5,7 @@ import glob
 
 from PyQt6.QtCore import Qt, QSize, QTimer, QEventLoop
 from PyQt6.QtWidgets import *
-from PyQt6.QtGui import QPixmap, QIcon, QImage
+from PyQt6.QtGui import QPixmap, QIcon
 
 from constructGUI import construct
 

@@ -1,4 +1,5 @@
-PyQt6==6.0.3
-PyQt6-Qt6==6.0.2
-PyQt6-sip==13.0.1
-python-vlc==3.0.11115
+PyQt6==6.2.3
+PyQt6-Qt6==6.2.4
+PyQt6-sip==13.2.1
+python-vlc==3.0.16120
+PyYAML==6.0

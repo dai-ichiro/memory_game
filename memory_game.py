@@ -3,7 +3,6 @@ import vlc
 import winsound
 import glob
 
-import sys
 from PyQt6.QtCore import Qt, QSize, QTimer, QEventLoop
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QPixmap, QIcon, QImage
@@ -169,8 +168,7 @@ class Window(QWidget):
         button.setIcon(QIcon(img))
         button.setIconSize(QSize(img.size()))
 
-app = QApplication(sys.argv)
+app = QApplication([])
 ex =Window()
-
 ex.showFullScreen()
-sys.exit(app.exec())
+app.exec()
